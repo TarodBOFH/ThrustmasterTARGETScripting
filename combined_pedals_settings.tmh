@@ -7,7 +7,6 @@ define CombinePedalsDisableToes 0           //Disables toe brakes when combining
 //Choose here the axis that you'll use to publish the combined toe brakes
 define CombinePedalsAxis   DX_SLIDER_AXIS
 
-
 //
 // FIRST TIME SETUP
 //
