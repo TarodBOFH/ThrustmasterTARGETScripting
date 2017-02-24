@@ -76,7 +76,6 @@ int combinePedals(int type, alias o, int x) {
         else if (CombinePedalsMode == CombinePedalsGreatest) {
             if (trpCombo.left > trpCombo.right) trpCombo.val = -trpCombo.left;
             else                                trpCombo.val = trpCombo.right;
-
         }
         
         //Publish new axis
