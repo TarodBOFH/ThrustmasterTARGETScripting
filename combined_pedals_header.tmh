@@ -1,0 +1,15 @@
+define CombinePedalsMerge    0              //Merge ( left - right)
+define CombinePedalsGreatest 1              //Greatest (left < rigth? righ : left
+    
+//Define as global, if not, when using 'Merge' Mode it behaves weird when an axis has been pushed but stops being pushed.
+
+struct sTRPCOMBO {
+    int left;
+    int right;
+    int val;
+}
+
+sTRPCOMBO trpCombo;
+
+int trpComboOffset = 16383; //offset for half axis each pedal
+    
