@@ -1,0 +1,97 @@
+include "combined_pedals_header.tmh"
+include "combined_pedals_settings.tmh"
+
+//
+// FIRST TIME SETUP
+//
+// Enable ComboPedalsDebug to be able to see the vcontroller on windows 10.
+// Else if you have finished setup (see bellow) and you want to 
+// publish your TRUDDER to your game as well as the combined pedals, 
+// it won't work
+//
+//To map your single pedals instead of the virtual ones to anygame
+//if you have not published axis for them with MapAxis
+//You will need to setup them first without this script.
+//
+//Configure this script to ConfigureStandAlone on settings
+//1.- Launch the script and your Game
+//2- Set up your pedals
+//3.- Close the game and stop the script
+//4.- Setup this script to ConfigureCombo on settings
+//5.- Launch the script and your Game
+//6.- Setup the combined Axis
+//7.- Close the game and delete the ComboPedalsConfigureStandAlone and ComboPedalsConfigureCombo 
+//    or alternatively, uncommnent the ComboPedalsConfigured setting on settings
+//8.- Launch the script and the Game 
+//9.- Enjoy!
+
+define ComboPedalsDebug 0
+
+int configureComboPedals() {
+    if (ComboPedalsDebug) {
+        return 1;
+    }
+    
+    if (ComboPedalsConfigured) {
+        if (!CombinePedalsDisableToes) Configure(&TFRPRudder, MODE_KEEPENABLED);
+    }
+    
+   if (ComboPedalsConfigureStandAlone) 
+       Configure(&TFRPRudder, MODE_EXCLUDED); //not in debug mode
+   else if (ComboPedalsConfigureCombo) 
+       return 1; //do not exclude them
+}
+
+
+int initCombinedPedals() {
+
+    if (CombinePedalsDisableToes) {//disable toes but keep rudder
+        printf("CombinePedals: Toes disabled\x0a");
+    } else {
+        printf("CombinePedals: Toes enabled\x0a");
+    }
+    
+    trpCombo.val = 0;
+}
+
+//Returns 0 if no more default events should be produced, 1 otherwise
+int combinePedals(int type, alias o, int x) {
+
+	// If pressing left or right pedanls
+    if (&o == &TFRPRudder & (x == TRPLEFT | x == TRPRIGHT)) {
+    
+        //Get both *only if are being pressed* (axdata.val)
+        //If it is not pressed, the blobal variable remembers them
+        GetAxisData(&o,TRPLEFT);
+        axdata.val = AxisVal(o[TRPLEFT], &axdata)/2;
+        if (axdata.val) trpCombo.left = trpComboOffset - axdata.val;
+                
+        GetAxisData(&o,TRPRIGHT);
+        axdata.val = AxisVal(o[TRPRIGHT], &axdata)/2;
+        if (axdata.val) trpCombo.right = trpComboOffset - axdata.val;
+            
+        //Calculate based on mode
+        if (CombinePedalsMode == CombinePedalsMerge)
+            trpCombo.val = trpCombo.right - trpCombo.left;
+        else if (CombinePedalsMode == CombinePedalsGreatest) {
+            if (trpCombo.left > trpCombo.right) trpCombo.val = -trpCombo.left;
+            else                                trpCombo.val = trpCombo.right;
+
+        }
+        
+        //Publish new axis
+		DXAxis (CombinePedalsAxis, trpCombo.val); 
+		
+		//If somebody has maped any toe brake to any virtual Axis
+		//(i.e. 
+		//MapAxis(&TFRPRudder, TRPLEFT, DX_XROT_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);
+		//MapAxis(&TFRPRudder, TRPRIGHT, DX_YROT_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);
+		//and toes is not disabled, publish event and consume next events.
+		if (!CombinePedalsDisableToes) {
+		  DefaultMapping(&o,x);
+		  return 0; //indicates to consume the event
+		}
+	}
+	
+	return 1;
+}
