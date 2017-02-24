@@ -16,7 +16,7 @@ Settings:
  
  * Disable toes: If you have mapped the toes to other axis (i.e. DX_XROT_AXIS or DX_YROT_AXIS) because you wanted to apply some curves, disable their default input with 1. This also will prevent to publish the Thrustmaster Rudder Pedals once launching the script. If you leave the default 0, your game will see both the virtual controller (and combined axis) as well as the physical controller. *DISCLAIMER* You cannot see the vcontroller on the 'Device Analyzer' while using the mode MODE_KEEPENABLED. Use ComboPedalsDebug on the 'combined_pedals_macros.ttm' file to debug with the device analyzer.
   
- * FIRST TIME SETUP *
+ ##FIRST TIME SETUP
 Enable ComboPedalsDebug to be able to see the vcontroller on windows 10.
 Else if you have finished setup (see bellow) and you want to 
 publish your TRUDDER to your game as well as the combined pedals, 
