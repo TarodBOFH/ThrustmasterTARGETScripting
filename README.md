@@ -10,6 +10,7 @@ Settings:
  * Mode of combination
   - Merge: The axis value will be the difference between left toe and right toe
   - Greatest: The axis value will be the greatest value of both left and right toe
+  
   Change the value of CombinePedalsMode to the one of your choice or uncomment / comment the premade definitions
   
  * Virtual Axis to use: Change the value of CombinePedalsAxis define to the one of your choice. By default it will use DX_SLIDER_AXIS
