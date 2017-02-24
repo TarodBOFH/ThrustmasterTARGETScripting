@@ -12,4 +12,3 @@ struct sTRPCOMBO {
 sTRPCOMBO trpCombo;
 
 int trpComboOffset = 16383; //offset for half axis each pedal
-    
