@@ -1,0 +1,49 @@
+include "target.tmh"
+include "combined_pedals_macros.ttm"
+
+//Sample main script
+//See combined_pedals_macros.ttm and 
+//    combined_pedals_settings.tmh for setup instructions
+int main()
+{
+    printf("\x0a");
+    printf("TarodBOFH TARGET Script initializing\x0a");
+    printf("\x0a");
+    
+	Configure(&HCougar, MODE_EXCLUDED);
+	Configure(&Joystick, MODE_EXCLUDED);
+	Configure(&Throttle, MODE_EXCLUDED);
+	Configure(&T16000, MODE_EXCLUDED);
+	Configure(&T16000L, MODE_EXCLUDED);
+	Configure(&LMFD, MODE_EXCLUDED);
+	Configure(&TWCSThrottle, MODE_EXCLUDED);
+
+    configureComboPedals();
+
+	//Configure(&TFRPRudder, MODE_FILTERED); //allow curves
+	
+	if(Init(&EventHandle)) return 1;
+	SetKBRate(25, 33);
+	SetKBLayout(KB_ENG);
+	SetShiftButton(0, 0, 0, 0, 0, 0);
+	
+    MapAxis(&TFRPRudder, TRUDDER, DX_Z_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);
+	SetSCurve(&TFRPRudder, TRUDDER, 0, 10, 0, 2, 0);
+	SetJCurve(&TFRPRudder, TRPLEFT, 20, 30);
+	SetJCurve(&TFRPRudder, TRPRIGHT, 20, 30);
+	
+    
+    printf("\x0a");
+    printf("Loading prefs\x0a");
+
+
+
+}
+
+
+int EventHandle(int type, alias o, int x) {
+    
+    //this function consumes the event
+    if (combinePedals(type,&o,x)) DefaultMapping(&o,x);	
+	
+}
