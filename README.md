@@ -26,14 +26,13 @@ To map your single pedals instead of the virtual ones to anygame
 if you have not published axis for them with MapAxis
 You will need to setup them first without this script.
 
-Configure this script to ConfigureStandAlone on settings
-1.- Launch the script and your Game
-2- Set up your pedals
-3.- Close the game and stop the script
-4.- Setup this script to ConfigureCombo on settings
-5.- Launch the script and your Game
-6.- Setup the combined Axis
-7.- Close the game and delete the ComboPedalsConfigureStandAlone and ComboPedalsConfigureCombo 
-    or alternatively, uncommnent the ComboPedalsConfigured setting on settings
-8.- Launch the script and the Game 
-9.- Enjoy!
+Configure this script to ConfigureStandAlone on settings:
+* 1.- Launch the script and your Game
+* 2- Set up your pedals
+* 3.- Close the game and stop the script
+* 4.- Setup this script to ConfigureCombo on settings
+* 5.- Launch the script and your Game
+* 6.- Setup the combined Axis
+* 7.- Close the game and delete the ComboPedalsConfigureStandAlone and ComboPedalsConfigureCombo or alternatively, uncommnent the ComboPedalsConfigured setting on settings
+* 8.- Launch the script and the Game 
+* 9.- Enjoy!
