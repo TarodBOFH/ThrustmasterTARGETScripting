@@ -1,0 +1,131 @@
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------//
+// DEFAULT SETTINGS //
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------//
+	define PulseTime 25							// PULSE+ Delay time 25
+	define DelayTime 33							// D() Delay time    33
+
+	define KBLayout KB_ENG						// Default Keyboard Layout
+
+	define MiniPressDelay 150					// Shortest Delay
+	define ShortPressDelay 250					// Shorter Delay
+	define PIPPressDelay 333					// Specific Timing for PIP Hat Switch
+	define LongPressDelay 500					// Standard Delay
+	define ExtraPressDelay 1500					// Longest Delay (For actions you want to be VERY careful with!)
+	
+	define LightIntensity 172                   //Backlight Intensity
+	
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------//
+// SCRIPT SETTINGS
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------//
+// JOYSTICK AXIS CURVES //
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------//
+//					  Up, MVR, DN
+	short JS_CURVE[] = {0, 1, 3};								// Set via the FLAP switch (Up is most aggresive, down is least aggressive)
+	short JS_ZOOM[]  = {0, 0, -2};
+
+	define JS_DEADZONE 0										// Set the JS Deadzone.. use the Device Analyzer to validate
+	define THROTTLE_DEADZONE = 1
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------//
+// DEFAULT STATES    (1 = Yes, 0 = No) //
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------//
+																// Set your toggles before you start Elite Dangerous to align default states.
+																// if your switches aren't set to match, then you'll have to do an extra key toggle to "catch up"
+																
+	int inCameraMode = 0;										// Classified Camera OFF
+	int RCorrection = 1;										// Rotational Correction ON	(Press 'F4' to align as required in-game)
+	int Lights = 0;												// Ship Lights OFF 			(Press 'INSERT' to align if SRV takes out of alignment)
+	int combinePriSecFire = 1;									// Combine Primary+Secondary Fire on Trigger 2 (full depression of trigger)
+	int hardPointsDeployed = 0;                                 // To check what full trigger should do
+
+//Mappings
+int tCargoScoop   = EFRNORM;
+
+int tJettisonToggle1 = EORIGN;
+int tJettisonToggle2 = EOLIGN;
+
+int tSilentRunning = APUON;
+
+
+// Keymap
+struct sKEYBOARD {
+int A;
+int B;
+int C;
+int D;
+int E;
+int F;
+int G;
+int H;
+int I;
+int J;
+int K;
+int L;
+int M;
+int N;
+int O;
+int P;
+int Q;
+int R;
+int S;
+int T;
+int U;
+int V;
+int W;
+int X;
+int Y;
+int Z;
+int k1;
+int k2;
+int k3;
+int k4;
+int k5;
+int k6;
+int k7;
+int k8;
+int k9;
+int k0;
+
+}
+
+sKEYBOARD keyboard;
+
+int initKeyboard() {
+    keyboard.A = USB[0x04];
+    keyboard.B = USB[0x05];
+    keyboard.C = USB[0x06];
+    keyboard.D = USB[0x07];
+    keyboard.E = USB[0x08];
+    keyboard.F = USB[0x09];
+    keyboard.G = USB[0x0A];
+    keyboard.H = USB[0x0B];
+    keyboard.I = USB[0x0C];
+    keyboard.J = USB[0x0D];
+    keyboard.K = USB[0x0E];
+    keyboard.L = USB[0x0F];
+    keyboard.M = USB[0x10];
+    keyboard.N = USB[0x11];
+    keyboard.O = USB[0x12];
+    keyboard.P = USB[0x13];
+    keyboard.Q = USB[0x14];
+    keyboard.R = USB[0x15];
+    keyboard.S = USB[0x16];
+    keyboard.T = USB[0x17];
+    keyboard.U = USB[0x18];
+    keyboard.V = USB[0x19];
+    keyboard.W = USB[0x1A];
+    keyboard.X = USB[0x1B];
+    keyboard.Y = USB[0x1C];
+    keyboard.Z = USB[0x1D];
+    keyboard.k1=USB[0x1E];
+    keyboard.k2=USB[0x1F];
+    keyboard.k3=USB[0x20];
+    keyboard.k4=USB[0x21];
+    keyboard.k5=USB[0x22];
+    keyboard.k6=USB[0x23];
+    keyboard.k7=USB[0x24];
+    keyboard.k8=USB[0x25];
+    keyboard.k9=USB[0x26];
+    keyboard.k0=USB[0x27];
+}
